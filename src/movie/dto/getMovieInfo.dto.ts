@@ -1,4 +1,4 @@
-export class getMovieInfoDto {
+export class GetMovieInfoDto {
   readonly Title: string;
   readonly Year: string;
   readonly Released: string;
