@@ -1,3 +1,6 @@
-export class SetTitleDto {
-	readonly Title: string;
+import { IsString } from 'class-validator';
+
+export class GetMovieInfoDto {
+	@IsString()
+	readonly title: string;
 }

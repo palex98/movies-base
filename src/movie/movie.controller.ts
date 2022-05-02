@@ -1,4 +1,5 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Query, Req } from '@nestjs/common';
+import { GetMovieInfoDto } from './dto/setTitle.dto';
 
 
 import { MovieService } from './movie.service';
@@ -7,11 +8,8 @@ import { MovieService } from './movie.service';
 export class MovieController {
   constructor(private readonly movieService: MovieService) { }
   @Get()
-  findInfo(@Req() title: string) {
-    const BASE_URL = 'http://www.omdbapi.com/';
-    const API_KEY = 'b53c371c';
+  findInfo(@Query() params: GetMovieInfoDto) {
 
-    return this.movieService.getMovieInfo(
-      `${BASE_URL}?t=${title}&apikey=${API_KEY}`);
+    return this.movieService.getMovieInfo(params.title);
   }
 }

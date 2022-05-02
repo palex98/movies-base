@@ -4,8 +4,10 @@ import { MovieController } from './movie.controller';
 import { MovieService } from './movie.service';
 
 @Module({
-  imports: [HttpModule],
+  imports: [HttpModule.register({
+    baseURL: 'http://www.omdbapi.com',
+  })],
   controllers: [MovieController],
   providers: [MovieService],
 })
-export class MovieModule {}
+export class MovieModule { }

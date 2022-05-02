@@ -5,10 +5,10 @@ import { GetMovieInfoDto } from './dto/getMovieInfo.dto';
 @Injectable()
 export class MovieService {
   constructor(private httpService: HttpService) { }
-  async getMovieInfo(url: string): Promise<GetMovieInfoDto> {
-
+  async getMovieInfo(title: string): Promise<GetMovieInfoDto> {
+    const API_KEY = 'b53c371c';
     const { data } = await firstValueFrom(
-      this.httpService.get(url),
+      this.httpService.get(`/?t=${title}&apikey=${API_KEY}`),
     );
     return data;
   }
