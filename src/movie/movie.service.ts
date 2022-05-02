@@ -6,9 +6,9 @@ import { GetMovieInfoDto } from './dto/getMovieInfo.dto';
 export class MovieService {
   constructor(private httpService: HttpService) { }
   async getMovieInfo(title: string): Promise<GetMovieInfoDto> {
-    const API_KEY = 'b53c371c';
+    const key = process.env.API_KEY;
     const { data } = await firstValueFrom(
-      this.httpService.get(`/?t=${title}&apikey=${API_KEY}`),
+      this.httpService.get(`/?t=${title}&apikey=${key}`),
     );
     return data;
   }
