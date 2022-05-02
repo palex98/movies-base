@@ -1,4 +1,7 @@
+import { IsString } from 'class-validator';
+
 export class GetMovieInfoDto {
+  @IsString()
   readonly Title: string;
   readonly Year: string;
   readonly Released: string;
