@@ -4,13 +4,11 @@ import { firstValueFrom } from 'rxjs';
 import { GetMovieInfoDto } from './dto/getMovieInfo.dto';
 @Injectable()
 export class MovieService {
-  constructor(private httpService: HttpService) {}
-  async getMovieInfo(titleName: string): Promise<GetMovieInfoDto> {
-    const movieName = titleName.trim();
+  constructor(private httpService: HttpService) { }
+  async getMovieInfo(url: string): Promise<GetMovieInfoDto> {
+
     const { data } = await firstValueFrom(
-      this.httpService.get(
-        `http://www.omdbapi.com/?t=${movieName}&apikey=b53c371c`,
-      ),
+      this.httpService.get(url),
     );
     return data;
   }
