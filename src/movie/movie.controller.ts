@@ -5,7 +5,7 @@ import { MovieService } from './movie.service';
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
   @Get()
-  findInfo(titleName: string) {
-    return this.movieService.getMovieInfo(titleName);
+  findInfo() {
+    return this.movieService.getMovieInfo('Goodfellas');
   }
 }
