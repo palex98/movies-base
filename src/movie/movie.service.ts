@@ -13,3 +13,5 @@ export class MovieService {
     return data;
   }
 }
+  // constructor(private configService: ConfigService) { }
+  // const key = this.configService.get<string>('API_KEY');
