@@ -5,6 +5,7 @@ import * as Joi from 'joi';
 import { MovieModule } from './movie/movie.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Movie } from './movie';
 import ormconfig from './ormconfig';
 
 @Module({
@@ -20,6 +21,6 @@ import ormconfig from './ormconfig';
     },
   })],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, Movie],
 })
 export class AppModule { }
