@@ -1,5 +1,5 @@
 import { Controller, Get, Query, Req } from '@nestjs/common';
-import { GetMovieInfoDto } from './dto/setTitle.dto';
+import { GetMovieInfoDto } from './dto/get.Movie.Info.dto';
 import { MovieService } from './movie.service';
 
 @Controller('movie')

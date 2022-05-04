@@ -8,10 +8,7 @@ const config: ConnectionOptions = {
 	username: 'theusername',
 	password: 'thepw',
 	database: 'mydb',
-	entities: [],
+	entities: [__dirname + '/**/*.entity{.ts,.js}'],
 	synchronize: true,
 };
 export default config;
-
-
-// __dirname + '/../**/*.entity{.ts,.js}',

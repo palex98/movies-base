@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 
-export class GetMovieInfoDto {
+export class MovieInfoResponseDto {
   @IsString()
   readonly Title: string;
   @IsString()
