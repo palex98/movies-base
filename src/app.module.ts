@@ -5,12 +5,12 @@ import * as Joi from 'joi';
 import { MovieModule } from './movie/movie.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Movie } from './movie.providers';
-import { Movie } from './movie.providers';
 import ormconfig from './ormconfig';
+import { movieProviders } from './movie.providers';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(ormconfig), MovieModule, ConfigModule.forRoot({
+  imports: [MovieModule, DatabaseModule, ConfigModule.forRoot({
     isGlobal: true,
     envFilePath: ['./env/development.env'],
     validationSchema: Joi.object({
@@ -22,6 +22,6 @@ import ormconfig from './ormconfig';
     },
   })],
   controllers: [AppController],
-  providers: [AppService, Movie],
+  providers: [AppService, ...movieProviders],
 })
 export class AppModule { }
