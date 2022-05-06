@@ -1,15 +1,22 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from 'src/database/database.module';
-import { movieProviders } from 'src/movie.providers';
+import { getConnectionToken, getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
+import { MovieRepository } from 'src/database/repositories/movie.repository';
 import { MovieController } from './movie.controller';
 import { MovieService } from './movie.service';
 
 @Module({
   imports: [HttpModule.register({
     baseURL: 'http://www.omdbapi.com',
-  }), DatabaseModule],
+  }),
+  TypeOrmModule.forFeature([MovieRepository], 'DATABASE_CONNECTION'),
+  ],
   controllers: [MovieController],
-  providers: [...movieProviders, MovieService],
+  providers: [MovieService,
+    {
+      provide: getRepositoryToken(MovieRepository, 'DATABASE_CONNECTION'),
+      useFactory: connection => connection.getCustomRepository(MovieRepository),
+      inject: [getConnectionToken('DATABASE_CONNECTION')],
+    },],
 })
 export class MovieModule { }

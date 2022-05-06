@@ -9,7 +9,7 @@ export class MovieEntity {
 	title: string;
 
 	@Column()
-	yearReleased: string;
+	yearReleased: number;
 
 	@Column()
 	runtime: string;
@@ -17,6 +17,6 @@ export class MovieEntity {
 	@Column()
 	genre: string;
 
-	@Column({ default: "N/A" })
-	imdbRating: string;
+	@Column()
+	imdbRating: number;
 }

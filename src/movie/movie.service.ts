@@ -3,17 +3,18 @@ import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { MovieInfoResponseDto } from './dto/movie.Info.Response.dto';
 import { ConfigService } from '@nestjs/config';
-import { Repository } from 'typeorm';
+import { MovieRepository } from 'src/database/repositories/movie.repository';
 import { MovieEntity } from './movie.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class MovieService {
   private readonly API_KEY: string;
   constructor(
     private httpService: HttpService,
-     private configService: ConfigService,
-     @Inject('MOVIE_REPOSITORY')
-  private movieRepository: Repository<MovieEntity>) {
+    private configService: ConfigService,
+    @InjectRepository(MovieRepository, 'DATABASE_CONNECTION')
+    private movieRepository: MovieRepository) {
     this.API_KEY = this.configService.get<string>('API_KEY');
   }
   async getMovieInfo(title: string): Promise<MovieInfoResponseDto> {
@@ -22,10 +23,7 @@ export class MovieService {
     );
     return data;
   }
-  async getAllMovies(): Promise<MovieEntity[]> {
-    return this.movieRepository.find();
-  }
-  async saveMovie(movie: MovieEntity): Promise<MovieEntity> {
-    return this.movieRepository.save(movie);
-  }
+  // async saveMovie(movie: MovieInfoResponseDto): Promise<MovieInfoResponseDto> {
+  //   const movieEntity = new MovieEntity();
+  // }
 }

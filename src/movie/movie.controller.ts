@@ -8,10 +8,6 @@ export class MovieController {
   constructor(private readonly movieService: MovieService) { }
   @Get()
   findInfo(@Query() params: GetMovieInfoDto) {
-  const result = this.movieService.getMovieInfo(params.title);
-  const movieEntity: MovieEntity = new MovieEntity(); 
-    this.movieService.saveMovie(movieEntity);
-  return result;
-   
+    return this.movieService.getMovieInfo(params.title);
   }
 }

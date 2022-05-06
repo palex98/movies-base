@@ -12,7 +12,7 @@ export const databaseProviders = [
 				password: 'thepw',
 				database: 'mydb',
 				synchronize: true,
-				entities: [__dirname + '../movie/movie.entity{.ts,.js}'],
+				entities: [__dirname + '/../**/*.entity{.ts,.js}'],
 			});
 
 		},
